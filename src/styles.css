@@ -1,0 +1,96 @@
+body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    height: 100vh;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+
+}
+
+.sidebar.collapsed .sidebar-text {
+  display: none;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar ul li:hover {
+    background-color: #444;
+}
+
+.toggle-btn {
+    background-color: #222;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+}
+    
+.div1 {
+    grid-column: span 4 / span 4;
+}
+
+.div2 {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+.div3 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+.div4 {
+    grid-column-start: 2;
+    grid-row-start: 3;
+}
+
+.div5 {
+    grid-column-start: 1;
+    grid-row-start: 3;
+}
+
+.div6 {
+    grid-column: span 4 / span 4;
+    grid-row: span 2 / span 2;
+    grid-row-start: 4;
+}
+        
