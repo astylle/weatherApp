@@ -10,12 +10,17 @@
     <button class="toggle-btn" id="sidebarButton">☰</button>
     <ul>
       <li><span class="sidebar-text">Dashboard</span></li>
-      <li><span class="sidebar-text">Favorite Cities</span></li>
+      <li><span class="sidebar-text" id="favCities">Favorite Cities:</span></li>
+
+      <li><span class="sidebar-text"><button id="clearLocal">Clear Favorite Cities</button></span></li>
     </ul>
   </div>
   <div class="parent">
-    <div class="div1" id="header"><h1>Header</h1></div>
-    <div class="div2" id="todayTemp">Temp</div>
+    <div class="div1" id="header"><h1>The Weather in __ right NOW</h1></div>
+    <div class="div2" id="temp">
+      <div id="realTemp"></div>
+      <div id="feelsLike"></div>
+    </div>
     <div class="div3">
     <!-- Form for searching location -->
         <form id="search" autocomplete="off">
@@ -24,8 +29,12 @@
         </form>
     </div>
     <div class="div4" id="">4</div>
-    <div class="div5" id="">5</div>5
-    <div class="div6" id="weeklyTemp">WeeklyTemp</div>
+    <div class="div5" id="">5</div>
+    <div class="div6" id="weeklyTemp"><h3>WeeklyTemp</h3>
+        <div class="weekGrid" id="weekGrid">
+           
+        </div>
+    </div>
 </div>
 </body>
 </html>
