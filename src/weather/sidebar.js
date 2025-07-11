@@ -19,7 +19,9 @@ export function updateSite(weather){
 export function displayStoredLocations(){
     let cities = [];
     let storedArray = JSON.parse(localStorage.getItem("weatherData"))
-    
+    let favoriteCityList = document.getElementById("favCities")
+    favoriteCityList.innerHTML = ""
+
     storedArray.forEach(city =>{
         cities.push(city.location)
     })
@@ -32,20 +34,16 @@ export function displayStoredLocations(){
 
 function favoriteCities(city){
   let favoriteCityList = document.getElementById("favCities")
-
-  if(document.contains(document.getElementById("momDiv")==true)){
-        document.getElementById("momDiv").innerHTML = ""
-  }else{
-    let motherDiv = document.createElement("div")
-    motherDiv.id = "momDiv"
-  }
-
   let div = document.createElement("div")
+
+  console.log(city + "Test")
   div.id = city 
   div.innerText = city
   div.addEventListener("click", ()=>{grabLocationData(city)})
-  motherDiv.appendChild(div)
-  favoriteCityList.appendChild(motherDiv)
-
+  favoriteCityList.appendChild(div)
 }
 
+export function callAll(){
+  displayStoredLocations()
+  // toggleSidebar()
+}
