@@ -1,4 +1,5 @@
 import { displayStoredLocations } from "./sidebar";
+import { storeWeeklyData } from "./weeklyData";
 ///User input information 
 let apiKey = "A7LTJY4SMSV4V2JNWLW8NXDXQ"
 const key = "weatherData"
@@ -9,10 +10,12 @@ let localWeatherData = document.getElementById("clearLocal")
 
 //clears local storage
 export function clearLS() {
-  localWeatherData.addEventListener("click", ()=>{
-    localStorage.clear()
-    storedArray = []
-  })
+    localWeatherData.addEventListener("click", ()=>{
+        localStorage.clear()
+        storedArray = []
+        let favoriteCityList = document.getElementById("favCities")
+        favoriteCityList.innerHTML = ""
+    })
 }
 
 export function locationSearch(e){
@@ -39,15 +42,19 @@ export async function grabLocationData(query){
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json() // puts the information in json
-        console.log("Results: ", data)
-        console.log("temp", data.currentConditions.feelslike)
-        console.log("days", data.days[0].datetime)
-        storeWeatherData(data.address ,data.currentConditions.temp, data.currentConditions.feelslike, data.days[0].datetime, data.days[0].description, data.currentConditions.sunrise, data.currentConditions.sunset)
+        console.log(data)
+        storeWeatherData(data.resolvedAddress ,data.currentConditions.temp, data.currentConditions.feelslike, data.days[0].datetime, data.days[0].description, data.currentConditions.sunrise, data.currentConditions.sunset)
         storeWeeklyData(data.days[0], data.days[1], data.days[2], data.days[3], data.days[4])
     } catch (error) {
         console.error("Fetch Error: ", error)
     }
 }
+
+function searchSanitization(query){
+    let unsantizedQuery = query
+
+}
+
 function storeWeatherData(location, temp, feelsLike, date, desc,sunrise,sunset){
     //creates and stores in local storage
     let currentWeather = new WeatherReport(location, temp, feelsLike, date, desc, sunrise, sunset)
@@ -61,40 +68,12 @@ function storeWeatherData(location, temp, feelsLike, date, desc,sunrise,sunset){
     displayStoredLocations()
 }   
 
-
 function displayWeatherData(weather){
     const weatherObject = weather
     console.log(weatherObject)
     
     document.getElementById("realTemp").innerText = "The temperature is:" + weatherObject.temp
     document.getElementById("feelsLike").innerText = "Feels like " + weatherObject.feelsLike
-
+    document.getElementById("header").innerHTML = `Its currently ${weatherObject.temp} in ${weatherObject.location}`
 }
 
-function storeWeeklyData(day1, day2, day3, day4, day5){
-    // console.log("we start collecting weekly data here")
-    let weeklyWeather = [day1, day2, day3, day4, day5]
-    displayWeeklyData(weeklyWeather)
-}
-
-function displayWeeklyData(weeklyWeather){
-    let weeklyWeatherDiv = document.getElementById("weekGrid")
-
-    weeklyWeather.forEach((days, index) => {
-        ///  The weather data for the next 5 days are stored in the "days" variable
-        // console.log(days)
-        let dayWeatherMom = document.createElement("div")
-        dayWeatherMom.id = "dayWeatherMom " + index
-        // dayWeatherMom.classList.add("#weekGridDiv")
-        let feelsLike = document.createElement("h5");
-        feelsLike.innerText = `Feels like ${days.feelslike} on the ${days.datetime}`
-        dayWeatherMom.appendChild(feelsLike)
-
-        weeklyWeatherDiv.appendChild(dayWeatherMom)
-    });
-}
-
-
-// function clearData(){
-//     document.getElementById("tempDivID")
-// }

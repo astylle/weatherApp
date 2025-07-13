@@ -18,6 +18,7 @@ export function updateSite(weather){
 
 export function displayStoredLocations(){
     let cities = [];
+    console.log("list of cities" + cities)
     let storedArray = JSON.parse(localStorage.getItem("weatherData"))
     let favoriteCityList = document.getElementById("favCities")
     favoriteCityList.innerHTML = ""
@@ -27,20 +28,24 @@ export function displayStoredLocations(){
     })
     let uniqueCities = [...new Set(cities)]
     uniqueCities.forEach(city=>{
-        favoriteCities(city)
+        favoriteCities(city.split(",")[0].trim())
     })
 
 }
 
 function favoriteCities(city){
   let favoriteCityList = document.getElementById("favCities")
-  let div = document.createElement("div")
+  let li = document.createElement("li")
+  let span = document.createElement("span")
+  span.classList.add("sidebar-text")
+  span.id = city 
+  console.log(city)
 
-  console.log(city + "Test")
-  div.id = city 
-  div.innerText = city
-  div.addEventListener("click", ()=>{grabLocationData(city)})
-  favoriteCityList.appendChild(div)
+
+  span.innerText = city
+  span.addEventListener("click", ()=>{grabLocationData(city)})
+  li.appendChild(span)
+  favoriteCityList.appendChild(li)
 }
 
 export function callAll(){
