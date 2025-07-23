@@ -1,5 +1,5 @@
-import { displayStoredLocations } from "./sidebar";
 import { storeWeeklyData } from "./weeklyData";
+import { storeWeatherData } from "./dailyData";
 ///User input information 
 let apiKey = "A7LTJY4SMSV4V2JNWLW8NXDXQ"
 const key = "weatherData"
@@ -25,15 +25,6 @@ export function locationSearch(e){
     grabLocationData(userInput)
 } 
 
-function WeatherReport(location,temp,feelsLike,date,desc,sunrise,sunset){
-    this.location = location
-    this.temp = temp;
-    this.feelsLike = feelsLike;
-    this.date = date;
-    this.desc = desc;
-    this.sunrise = sunrise;
-    this.sunset = sunset;
-}
 
 export async function grabLocationData(query){
     try{
@@ -52,28 +43,11 @@ export async function grabLocationData(query){
 
 function searchSanitization(query){
     let unsantizedQuery = query
+    
+    if(unsantizedQuery){
+
+    }
 
 }
 
-function storeWeatherData(location, temp, feelsLike, date, desc,sunrise,sunset){
-    //creates and stores in local storage
-    let currentWeather = new WeatherReport(location, temp, feelsLike, date, desc, sunrise, sunset)
-    storedArray.push(currentWeather)
-
-    localStorage.setItem(key, JSON.stringify(storedArray))
-
-    displayWeatherData(currentWeather)
-    
-    ///this is supposed to give me a list of unique cities
-    displayStoredLocations()
-}   
-
-function displayWeatherData(weather){
-    const weatherObject = weather
-    console.log(weatherObject)
-    
-    document.getElementById("realTemp").innerText = "The temperature is:" + weatherObject.temp
-    document.getElementById("feelsLike").innerText = "Feels like " + weatherObject.feelsLike
-    document.getElementById("header").innerHTML = `Its currently ${weatherObject.temp} in ${weatherObject.location}`
-}
 
