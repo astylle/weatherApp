@@ -1,42 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>reportWeather</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
-<body>
-<div class="sidebar" id="sidebar">
-    <button class="toggle-btn" id="sidebarButton">☰</button>
-    <ul>
-      <li><span class="sidebar-text">Dashboard</span></li>
-      <li><span class="sidebar-text">Favorite Cities:</span></li>
-      <li><span class="sidebar-text" id="favCities"></span></li>
-      <li><span class="sidebar-text"><button id="clearLocal">Clear Recent Cities</button></span></li>
-    </ul>
-  </div>
-  <div class="parent">
-    <div class="div1">        
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="sidebar" id="sidebar">
+      <button class="toggle-btn" id="sidebarButton">☰</button>
+      <ul>
+        <li><span class="sidebar-text">Dashboard</span></li>
+        <li><span class="sidebar-text">Favorite Cities:</span></li>
+        <li><span class="sidebar-text" id="favCities"></span></li>
+        <li>
+          <span class="sidebar-text"
+            ><button id="clearLocal">Clear Recent Cities</button></span
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="parent">
+      <div class="div1">
         <form id="search" autocomplete="off">
-            <input type="text" id="location">
-            <input type="submit" value="submit">
+          <input type="text" id="location" />
+          <input type="submit" value="submit" />
         </form>
+      </div>
+      <div class="div2" id="temp">
+        <div id="realTemp"></div>
+      </div>
+      <div class="div3" id="header">
+        <!-- Form for searching location -->
+      </div>
+      <div class="div4">
+        <div id="feelsLike"></div>
+      </div>
+      <div class="div5">
+        <div id="sunSetRise"></div>
+      </div>
+      <div class="div6" id="weeklyTemp">
+        <h3>WeeklyTemp</h3>
+        <br />
+        <div class="weekGrid" id="weekGrid"></div>
+      </div>
     </div>
-    <div class="div2" id="temp">
-      <div id="realTemp"></div>
-      <div id="feelsLike"></div>
-    </div>
-    <div class="div3" id="header">
-    <!-- Form for searching location -->
-    </div>
-    <div class="div4"></div>
-    <div class="div5"></div>
-    <div class="div6" id="weeklyTemp"><h3>WeeklyTemp</h3>
-        <div class="weekGrid" id="weekGrid">
-           
-        </div>
-    </div>
-</div>
-</body>
+  </body>
 </html>
